@@ -26,8 +26,8 @@ jobs:
         node-version: 12.x
     - run: npm install -g svgexport
     - run: |
-      mkdir -p png/outline
-      mkdir -p png/fill
+        mkdir -p png/outline
+        mkdir -p png/fill
     - name: Convert svg to png
       run: |
         find ./icons -name "*.svg" -not -name "*-fill.svg" -print0 | while read -r -d '' file; do svgexport "$file" ./png/outline/$(basename ${file%%.svg}).png png pad 256:256 ; done
