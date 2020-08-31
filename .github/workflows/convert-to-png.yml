@@ -30,8 +30,8 @@ jobs:
         mkdir -p png/fill
     - name: Convert svg to png
       run: |
-        find ./icons -name "*.svg" -not -name "*fill*.svg" -print0 | while read -r -d '' file; do svgexport "$file" ./png/outline/$(basename ${file%%.svg}).png png pad 256:256 ; done
-        find ./icons -name "*fill*.svg" -print0 | while read -r -d '' file; do svgexport "$file" ./png/fill/$(basename ${file%%.svg}).png png pad 256:256 ; done
+        find ./icons -name "*.svg" -not -name "*fill*.svg" -not -name "*fll*.svg" -print0 | while read -r -d '' file; do svgexport "$file" ./png/outline/$(basename ${file%%.svg}).png png pad 256:256 ; done
+        find ./icons -name "*fill*.svg" -or -name "*fll*.svg" -print0 | while read -r -d '' file; do svgexport "$file" ./png/fill/$(basename ${file%%.svg}).png png pad 256:256 ; done
     - name: git setting
       run: |
         git config --local user.email "tarukosu0@gmail.com"
